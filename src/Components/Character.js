@@ -7,3 +7,11 @@ const style = {
     margin: '16px',
     border: '1px solid'
 };
+
+const character = () => {
+    return (
+        <p style={style}>Test</p>
+    )
+};
+
+export default character;

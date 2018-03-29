@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import Validation from './Components/Validation';
+import Character from './Components/Character';
 
 class App extends Component {
 
@@ -7,6 +9,12 @@ class App extends Component {
     display: 0
   };
   
+  checkLengthHandler = (length) => {
+    var toReturn = null;
+    length < 5 ? toReturn = "Input too short": toReturn = "Input long enough";
+    return toReturn;
+  };
+
   inputChangedHandler = (event) => {
     const currentString = this.state;
     currentString.display = event.target.value.length;
@@ -19,6 +27,8 @@ class App extends Component {
       <div className="App">
         <input type="text" onChange={(event) => this.inputChangedHandler(event)}/>
         <p>{this.state.display}</p>
+        <Validation check={this.checkLengthHandler(this.state.display)}/>
+        <Character />
         <ol>
           <li>Create an input field (in App component) with a change listener which outputs the length of the entered text below it (e.g. in a paragraph).</li>
           <li>Create a new component (=> ValidationComponent) which receives the text length as a prop</li>
