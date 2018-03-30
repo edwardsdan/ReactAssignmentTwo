@@ -10,7 +10,7 @@ const style = {
 
 const character = (props) => {
     return (
-        <p style={style}>{props.name}</p>
+        <p style={style} onClick={props.click}>{props.name}</p>
     )
 };
 

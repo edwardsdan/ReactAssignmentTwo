@@ -9,6 +9,14 @@ class App extends Component {
     display: 'test',
   };
   
+  deleteCharHandler = (charIndex) => {
+    let currentState = this.state;
+    let temp = currentState.display.split('');
+    temp.splice(charIndex, 1);
+    currentState.display = temp.join('');
+    this.setState({currentState});
+  };
+
   checkLengthHandler = (length) => {
     let toReturn = null;
     length >= 5 ? toReturn = "Input long enough": toReturn = "Input too short";
@@ -24,7 +32,7 @@ class App extends Component {
 
   displayCharHandler = (temp) => {
     return temp.split('');
-  }
+  };
 
   render() {
     
@@ -32,7 +40,7 @@ class App extends Component {
     const toDisplay = this.displayCharHandler(display);
     let newObject = toDisplay.map((char, index) => {
       return (
-        <Character name={char} key={index}/>
+        <Character name={char} key={index} click={() => this.deleteCharHandler(index)}/>
       )
     });
 
@@ -42,6 +50,7 @@ class App extends Component {
         <p>{this.state.display}</p>
         <Validation check={this.checkLengthHandler(this.state.display)}/>
         <div>{newObject}</div>
+        <hr />
         <ol>
           <li>Create an input field (in App component) with a change listener which outputs the length of the entered text below it (e.g. in a paragraph).</li>
           <li>Create a new component (=> ValidationComponent) which receives the text length as a prop</li>
