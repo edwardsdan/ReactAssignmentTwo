@@ -8,9 +8,9 @@ const style = {
     border: '1px solid'
 };
 
-const character = () => {
+const character = (props) => {
     return (
-        <p style={style}>Test</p>
+        <p style={style}>{props.name}</p>
     )
 };
 
