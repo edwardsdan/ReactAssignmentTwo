@@ -10,32 +10,27 @@ class App extends Component {
   };
   
   deleteCharHandler = (charIndex) => {
-    let currentState = this.state;
-    let temp = currentState.display.split('');
-    temp.splice(charIndex, 1);
-    currentState.display = temp.join('');
-    this.setState({currentState});
+    let text = this.state.display.split('');
+    text.splice(charIndex, 1);
+    const updatedText = text.join('');
+    this.setState({display: updatedText});
   };
 
   inputChangedHandler = (event) => {
-    let newValue = event.target.value;
-    let currentState = this.state;
-    currentState.display = newValue;
-    this.setState({currentState})
-  };
-
-  displayCharHandler = (temp) => {
-    return temp.split('');
+    // let newValue = event.target.value;
+    // let currentState = this.state;
+    // currentState.display = newValue;
+    // this.setState({currentState})
+    this.setState({display: event.target.value});
   };
 
   render() {
     
-    const {display} = this.state;
-    const toDisplay = this.displayCharHandler(display);
-    let newObject = toDisplay.map((char, index) => {
-      return (
-        <Character name={char} key={index} click={() => this.deleteCharHandler(index)}/>
-      )
+    let charList = this.state.display.split('').map((ch,index) => {
+      return <Character 
+                name={ch}
+                key={index}
+                clicked={() => this.deleteCharHandler(index)}/>
     });
 
     return (
@@ -45,7 +40,7 @@ class App extends Component {
           value={this.state.display}/>
         <p>{this.state.display}</p>
         <Validation check={this.state.display.length}/>
-        <div>{newObject}</div>
+        <div>{charList}</div>
         <hr />
         <ol>
           <li>Create an input field (in App component) with a change listener which outputs the length of the entered text below it (e.g. in a paragraph).</li>

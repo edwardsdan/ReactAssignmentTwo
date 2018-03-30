@@ -2,15 +2,15 @@ import React from 'react';
 
 const validation = (props) => {
 
-    let validationMessage = 'Input is too short';
+    let validationMessage = <p>Input is too short</p>;
 
     if (props.check >= 5) {
-        validationMessage = 'Input is long enough';
+        validationMessage = <p>Input is long enough</p>;
     }
 
     return (
         <div>
-            <p>{validationMessage}</p>
+            {validationMessage}
         </div>
     )
 };
