@@ -17,12 +17,6 @@ class App extends Component {
     this.setState({currentState});
   };
 
-  checkLengthHandler = (length) => {
-    let toReturn = null;
-    length >= 5 ? toReturn = "Input long enough": toReturn = "Input too short";
-    return toReturn;
-  };
-
   inputChangedHandler = (event) => {
     let newValue = event.target.value;
     let currentState = this.state;
@@ -46,9 +40,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <input type="text" onChange={this.inputChangedHandler}/>
+        <input type="text"
+          onChange={this.inputChangedHandler}
+          value={this.state.display}/>
         <p>{this.state.display}</p>
-        <Validation check={this.checkLengthHandler(this.state.display)}/>
+        <Validation check={this.state.display.length}/>
         <div>{newObject}</div>
         <hr />
         <ol>
